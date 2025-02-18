@@ -3,13 +3,20 @@
 Un progetto interattivo che combina Three.js e GSAP.
 
 ## Caratteristiche
-
 - Forme 3D interattive
 - Animazioni fluide con GSAP
 - Effetti di fluttuazione
 - Ombre di contatto
 - Materiali reattivi alla luce
 - Interazioni al click
+
+## Tecnologie utilizzate
+- React
+- Three.js
+- @react-three/fiber
+- @react-three/drei
+- GSAP (GreenSock Animation Platform)
+- Vite
 
 ## Prerequisiti
 Prima di iniziare, assicurati di avere installato:
@@ -26,3 +33,6 @@ Prima di iniziare, assicurati di avere installato:
 
 ## Avvio del progetto
 -npm run dev
+
+## Licenza
+MIT
