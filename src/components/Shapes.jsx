@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useLayoutEffect } from 'react';
 import * as THREE from 'three';
 import { gsap } from 'gsap';
 import { Environment, Float } from '@react-three/drei';
@@ -8,11 +8,23 @@ import { ContactShadows } from '@react-three/drei';
 
 const Shapes = () => {
     const [isSoundEnabled, setIsSoundEnabled] = useState(true);
+    const marqueeRef = useRef();
+
+    useLayoutEffect(() => {
+        const marqueeText = marqueeRef.current;
+        
+        gsap.to(marqueeText, {
+            xPercent: -50,
+            duration: 20,
+            ease: "none",
+            repeat: -1
+        });
+    }, []);
 
     return (
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden' }}>
             <Canvas 
-                style={{width: '100vw', height: '100vh', backgroundColor: 'darkorange'}}
+                style={{width: '100%', height: '100%', backgroundColor: 'darkorange'}}
                 camera={{position: [0, 0, 25], fov: 30, near: 1, far: 40}}
                 shadows
             >
@@ -20,15 +32,23 @@ const Shapes = () => {
                 <Geometries soundEnabled={isSoundEnabled} />
                 <Environment preset='studio' />
             </Canvas>
-            <div style={{
-                position: 'absolute',
-                bottom: '20px',
-                left: '20px',
-                color: '#0C4767',
-                fontFamily: 'Oswald, sans-serif',
-                fontSize: '1rem',
-            }}>
-                Refresh the page to change mesh colors
+            <div 
+                ref={marqueeRef}
+                style={{
+                    position: 'absolute',
+                    left: '0',
+                    top: '0',
+                    width: '100%',
+                    color: 'transparent',
+                    fontFamily: 'Oswald, sans-serif',
+                    fontSize: 'clamp(2rem, 5vw, 5rem)',
+                    WebkitTextStroke: '1px #0C4767',
+                    whiteSpace: 'nowrap',
+                    pointerEvents: 'none'
+                }}
+            >
+                REFRESH - REFRESH - REFRESH - REFRESH - REFRESH - REFRESH&nbsp;
+                REFRESH - REFRESH - REFRESH - REFRESH - REFRESH - REFRESH
             </div>
             <button 
                 onClick={() => setIsSoundEnabled(!isSoundEnabled)}
