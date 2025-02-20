@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { gsap } from 'gsap';
 import { Environment, Float } from '@react-three/drei';
@@ -7,22 +7,53 @@ import PropTypes from 'prop-types';
 import { ContactShadows } from '@react-three/drei';
 
 const Shapes = () => {
+    const [isSoundEnabled, setIsSoundEnabled] = useState(true);
+
     return (
-        <div>
+        <div style={{ position: 'relative' }}>
             <Canvas 
                 style={{width: '100vw', height: '100vh', backgroundColor: 'darkorange'}}
                 camera={{position: [0, 0, 25], fov: 30, near: 1, far: 40}}
                 shadows
             >
                 <ContactShadows position={[0, -3.5, 0]} opacity={0.65} scale={40} />
-                <Geometries />
+                <Geometries soundEnabled={isSoundEnabled} />
                 <Environment preset='studio' />
             </Canvas>
+            <div style={{
+                position: 'absolute',
+                bottom: '20px',
+                left: '20px',
+                color: '#0C4767',
+                fontFamily: 'Oswald, sans-serif',
+                fontSize: '1rem',
+            }}>
+                Refresh the page to change mesh colors
+            </div>
+            <button 
+                onClick={() => setIsSoundEnabled(!isSoundEnabled)}
+                style={{
+                    position: 'absolute',
+                    bottom: '20px',
+                    right: '20px',
+                    padding: '8px 16px',
+                    backgroundColor: 'transparent',
+                    border: '2px solid #0C4767',
+                    borderRadius: '8px',
+                    color: '#0C4767',
+                    fontFamily: 'Oswald, sans-serif',
+                    fontSize: '1rem',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease'
+                }}
+            >
+                Sound: {isSoundEnabled ? 'ON' : 'OFF'}
+            </button>
         </div>
     )
 }
 
-function Geometries() {
+function Geometries({ soundEnabled }) {
     const geometries = [
         {
             position: [0, 0, 0],
@@ -84,13 +115,14 @@ function Geometries() {
                     geometry={item.geometry}
                     materials={materials}
                     soundEffect={soundEffect}
+                    soundEnabled={soundEnabled}
                 />
             ))}
         </>
     )
 }
 
-function Geometry({position, r, geometry, materials, soundEffect}) {
+function Geometry({position, r, geometry, materials, soundEffect, soundEnabled}) {
     const meshRef = useRef();
     useEffect(() => {
         gsap.from(meshRef.current.scale, {
@@ -105,7 +137,9 @@ function Geometry({position, r, geometry, materials, soundEffect}) {
 
     function handleClick(e) {
         const mesh = e.object;
-        gsap.utils.random(soundEffect).play()
+        if (soundEnabled) {
+            gsap.utils.random(soundEffect).play();
+        }
 
         gsap.to(mesh.rotation, {
             x: `+=${gsap.utils.random(0, 2)}`,
@@ -135,7 +169,8 @@ Geometry.propTypes = {
     position: PropTypes.arrayOf(PropTypes.number).isRequired,
     r: PropTypes.number.isRequired,
     geometry: PropTypes.object.isRequired,
-    materials: PropTypes.arrayOf(PropTypes.object).isRequired
+    materials: PropTypes.arrayOf(PropTypes.object).isRequired,
+    soundEnabled: PropTypes.bool
 };
 
 export default Shapes;
