@@ -65,6 +65,13 @@ function Geometries() {
         }),
     ]
 
+    const soundEffect = [
+        new Audio ("/sounds/Hihat 02 by Jalastram.wav"),
+        new Audio ("/sounds/Snare 11 by Jalastram.wav"),
+        new Audio ("/sounds/Trap Kick 01 by Jalastram.wav"),
+        new Audio ("/sounds/Trap Kick 02 by Jalastram.wav")
+    ]
+
     return (
         <>
             <ambientLight intensity={0.5} />
@@ -76,13 +83,14 @@ function Geometries() {
                     r={item.r}
                     geometry={item.geometry}
                     materials={materials}
+                    soundEffect={soundEffect}
                 />
             ))}
         </>
     )
 }
 
-function Geometry({position, r, geometry, materials}) {
+function Geometry({position, r, geometry, materials, soundEffect}) {
     const meshRef = useRef();
     useEffect(() => {
         gsap.from(meshRef.current.scale, {
@@ -97,6 +105,7 @@ function Geometry({position, r, geometry, materials}) {
 
     function handleClick(e) {
         const mesh = e.object;
+        gsap.utils.random(soundEffect).play()
 
         gsap.to(mesh.rotation, {
             x: `+=${gsap.utils.random(0, 2)}`,
