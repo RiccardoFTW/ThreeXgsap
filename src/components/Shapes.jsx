@@ -66,10 +66,10 @@ function Geometries() {
     ]
 
     const soundEffect = [
-        new Audio ("/sounds/Hihat 02 by Jalastram.wav"),
-        new Audio ("/sounds/Snare 11 by Jalastram.wav"),
-        new Audio ("/sounds/Trap Kick 01 by Jalastram.wav"),
-        new Audio ("/sounds/Trap Kick 02 by Jalastram.wav")
+        new Audio ("/sounds/sound01.wav"),
+        new Audio ("/sounds/sound02.wav"),
+        new Audio ("/sounds/sound03.wav"),
+        new Audio ("/sounds/sound04.wav")
     ]
 
     return (
