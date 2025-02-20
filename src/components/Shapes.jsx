@@ -38,7 +38,7 @@ const Shapes = () => {
                     right: '20px',
                     padding: '8px 16px',
                     backgroundColor: 'transparent',
-                    border: '2px solid #0C4767',
+                    border: '1px solid #0C4767',
                     borderRadius: '8px',
                     color: '#0C4767',
                     fontFamily: 'Oswald, sans-serif',
