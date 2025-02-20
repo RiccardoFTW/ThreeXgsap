@@ -97,10 +97,10 @@ function Geometries({ soundEnabled }) {
     ]
 
     const soundEffect = [
-        new Audio ("/sounds/sound01.wav"),
-        new Audio ("/sounds/sound02.wav"),
-        new Audio ("/sounds/sound03.wav"),
-        new Audio ("/sounds/sound04.wav")
+        new Audio ("/ThreeXgsap/sounds/sound01.wav"),
+        new Audio ("/ThreeXgsap/sounds/sound02.wav"),
+        new Audio ("/ThreeXgsap/sounds/sound03.wav"),
+        new Audio ("/ThreeXgsap/sounds/sound04.wav")
     ]
 
     return (
