@@ -1,1 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&display=swap");
+
+.sound-button {
+  position: absolute;
+  bottom: 30px;
+  right: 0;
+  padding: 8px 16px;
+  background-color: transparent;
+  border: none;
+  color: #0c4767;
+  font-family: "Oswald", sans-serif;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .sound-button {
+    bottom: 80px;
+    right: 0;
+    font-size: 1rem;
+  }
+}

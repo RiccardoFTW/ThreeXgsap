@@ -75,23 +75,11 @@ const Shapes = () => {
                 }}
             >
                 TAP - TAP - TAP - TAP - TAP - TAP&nbsp;
-                TAP - TAP - TAP - TAP - TAP - TAP
+                TAP - TAP - TAP - TAP - TAP - TAP - TAP - TAP - TAP - TAP - TAP - TAP - TAP - TAP - TAP - TAP - TAP - TAP - TAP - TAP - TAP
             </div>
             <button 
                 onClick={() => setIsSoundEnabled(!isSoundEnabled)}
-                style={{
-                    position: 'absolute',
-                    bottom: '40px',
-                    right: '10px',
-                    padding: '8px 16px',
-                    backgroundColor: 'transparent',
-                    border: 'none',
-                    color: '#0C4767',
-                    fontFamily: 'Oswald, sans-serif',
-                    fontSize: '0.8rem',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease'
-                }}
+                className="sound-button"
             >
                 Sound: {isSoundEnabled ? 'ON' : 'OFF'}
             </button>
