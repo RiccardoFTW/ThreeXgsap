@@ -8,16 +8,25 @@ import { ContactShadows } from '@react-three/drei';
 
 const Shapes = () => {
     const [isSoundEnabled, setIsSoundEnabled] = useState(true);
-    const marqueeRef = useRef();
+    const topMarqueeRef = useRef();
+    const bottomMarqueeRef = useRef();
 
     useLayoutEffect(() => {
-        const marqueeText = marqueeRef.current;
+        const topText = topMarqueeRef.current;
+        const bottomText = bottomMarqueeRef.current;
         
-        gsap.to(marqueeText, {
+        gsap.to(topText, {
             xPercent: -50,
-            duration: 20,
+            duration: 30,
             ease: "none",
             repeat: -1
+        });
+
+        gsap.to(bottomText, {
+            xPercent: -50,
+            duration: 30,
+            ease: "none",
+            repeat: 1
         });
     }, []);
 
@@ -33,7 +42,7 @@ const Shapes = () => {
                 <Environment preset='studio' />
             </Canvas>
             <div 
-                ref={marqueeRef}
+                ref={topMarqueeRef}
                 style={{
                     position: 'absolute',
                     left: '0',
@@ -50,19 +59,36 @@ const Shapes = () => {
                 REFRESH - REFRESH - REFRESH - REFRESH - REFRESH - REFRESH&nbsp;
                 REFRESH - REFRESH - REFRESH - REFRESH - REFRESH - REFRESH
             </div>
+            <div 
+                ref={bottomMarqueeRef}
+                style={{
+                    position: 'absolute',
+                    left: '0',
+                    bottom: '0',
+                    width: '100%',
+                    color: 'transparent',
+                    fontFamily: 'Oswald, sans-serif',
+                    fontSize: 'clamp(2rem, 5vw, 5rem)',
+                    WebkitTextStroke: '1px #0C4767',
+                    whiteSpace: 'nowrap',
+                    pointerEvents: 'none'
+                }}
+            >
+                TAP - TAP - TAP - TAP - TAP - TAP&nbsp;
+                TAP - TAP - TAP - TAP - TAP - TAP
+            </div>
             <button 
                 onClick={() => setIsSoundEnabled(!isSoundEnabled)}
                 style={{
                     position: 'absolute',
-                    bottom: '20px',
-                    right: '20px',
+                    bottom: '40px',
+                    right: '10px',
                     padding: '8px 16px',
                     backgroundColor: 'transparent',
-                    border: '1px solid #0C4767',
-                    borderRadius: '8px',
+                    border: 'none',
                     color: '#0C4767',
                     fontFamily: 'Oswald, sans-serif',
-                    fontSize: '1rem',
+                    fontSize: '0.8rem',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease'
                 }}
